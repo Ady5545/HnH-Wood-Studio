@@ -3,9 +3,9 @@
 import {useMemo,useState} from "react";
 import {ArrowRight} from "lucide-react";
 
-const finishes=[["Natural Oak",0],["Walnut",3500],["Smoked Oak",5000],["Custom Finish",7500]];
-const sizes=[["Standard",0],["Compact",-1500],["Grand",6500]];
-const upholstery=[["None",0],["Linen",2500],["Performance Fabric",4500],["Premium Fabric",6500]];
+const finishes:Array<[string,number]>=[["Natural Oak",0],["Walnut",3500],["Smoked Oak",5000],["Custom Finish",7500]];
+const sizes:Array<[string,number]>=[["Standard",0],["Compact",-1500],["Grand",6500]];
+const upholstery:Array<[string,number]>=[["None",0],["Linen",2500],["Performance Fabric",4500],["Premium Fabric",6500]];
 
 export function ProductConfigurator({basePrice}:{basePrice?:number|null}){
   const [finish,setFinish]=useState(finishes[0][0] as string);
