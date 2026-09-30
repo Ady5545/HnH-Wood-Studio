@@ -16,3 +16,14 @@
   html{scroll-behavior:auto}
   .reveal,.reveal-visible,.luxury-image,.luxury-line{opacity:1;transform:none;filter:none;animation:none;transition:none}
 }
+
+body{overflow-x:hidden}
+.parallax-inner{transform:translate3d(0,var(--parallax-y,0),0);transition:transform 120ms linear}
+.luxury-button{position:relative;overflow:hidden;isolation:isolate;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.luxury-button:before{content:"";position:absolute;inset:0;background:var(--sand);transform:translateY(102%);transition:transform .6s cubic-bezier(.22,1,.36,1);z-index:-1}
+.luxury-button:hover:before{transform:translateY(0)}
+.luxury-button:hover{color:var(--ink);transform:translateY(-2px)}
+.luxury-nav-link{position:relative}
+.luxury-nav-link:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:currentColor;transition:right .5s cubic-bezier(.22,1,.36,1)}
+.luxury-nav-link:hover:after{right:0}
+.film-grain:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")}
