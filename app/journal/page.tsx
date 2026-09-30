@@ -1,0 +1,9 @@
+import Link from "next/link";
+import {ArrowUpRight} from "lucide-react";
+import {Reveal} from "@/components/reveal";
+import {MaskReveal} from "@/components/mask-reveal";
+import {StudioImage} from "@/components/studio-image";
+
+const posts=[["Quiet corners","Living","How proportion, light and one considered piece can change the feeling of a room.","/images/editorial/editorial-01.jpg"],["A place to gather","Dining","Designing a dining space around everyday rituals and longer evenings.","/images/editorial/editorial-02.jpg"],["Objects with presence","Details","The small material choices that give a room its rhythm.","/images/editorial/editorial-03.jpg"]];
+
+export default function JournalPage(){return <main><section className="container py-20 md:py-28"><Reveal><p className="eyebrow text-wood">The HnH journal</p></Reveal><MaskReveal><h1 className="display mt-4 max-w-5xl text-6xl md:text-8xl">Rooms, materials & the life around them.</h1></MaskReveal><Reveal delay={140}><p className="mt-8 max-w-2xl text-lg leading-8 text-ink/65">A growing collection of ideas about furniture, spaces, materials and the details that make a home feel considered.</p></Reveal></section><section className="border-y border-line bg-[#eee7de]"><div className="container grid md:grid-cols-3">{posts.map(([title,tag,copy,img],i)=><article key={title} className="border-b border-line p-5 md:border-r md:p-7 md:last:border-r-0"><div className="aspect-[4/5] overflow-hidden"><StudioImage src={img} alt={title}/></div><p className="eyebrow mt-7 text-wood">{tag} · 0{i+1}</p><h2 className="display mt-3 text-3xl">{title}</h2><p className="mt-4 text-sm leading-7 text-ink/60">{copy}</p><Link href="/contact" className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.14em]">Discuss an idea <ArrowUpRight size={14}/></Link></article>)}</div></section></main>;}
