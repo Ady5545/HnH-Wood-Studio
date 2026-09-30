@@ -7,6 +7,8 @@ import {Parallax} from "@/components/motion";
 import {ImageReveal} from "@/components/image-reveal";
 import {MaskReveal} from "@/components/mask-reveal";
 import {HorizontalGallery} from "@/components/horizontal-gallery";
+import {HomeFinder} from "@/components/home-finder";
+import {HomeFaq} from "@/components/home-faq";
 import {products} from "@/lib/products";
 
 const categories=["Living Room","Bedroom","Dining","Seating","Tables","Storage","Custom Furniture"];
