@@ -1,5 +1,85 @@
-import Link from "next/link";import {ArrowDownRight,ArrowUpRight,Box,CreditCard,Sparkles} from "lucide-react";import {ProductCard} from "@/components/product-card";import {ProductPlaceholder} from "@/components/product-placeholder";import {products} from "@/lib/products";
+import Link from "next/link";
+import {ArrowDownRight,ArrowUpRight,Box,CreditCard,Sparkles} from "lucide-react";
+import {ProductCard} from "@/components/product-card";
+import {ProductPlaceholder} from "@/components/product-placeholder";
 import {Reveal} from "@/components/reveal";
 import {Parallax} from "@/components/motion";
+import {ImageReveal} from "@/components/image-reveal";
+import {MaskReveal} from "@/components/mask-reveal";
+import {HorizontalGallery} from "@/components/horizontal-gallery";
+import {products} from "@/lib/products";
+
 const categories=["Living Room","Bedroom","Dining","Seating","Tables","Storage","Custom Furniture"];
-export default function Home(){return <main><section className="container grid min-h-[calc(100vh-76px)] items-end gap-10 py-12 md:grid-cols-[1.05fr_.95fr] md:py-16"><div className="pb-4 md:pb-14"><Reveal><p className="eyebrow text-wood luxury-line">Furniture · Objects · Living</p></Reveal><Reveal delay={90}><h1 className="display mt-5 max-w-3xl text-6xl leading-[.92] sm:text-7xl md:text-[92px]">Made to make a <em className="not-italic text-wood">space</em> feel like yours.</h1></Reveal><Reveal delay={180}><p className="mt-7 max-w-xl text-base leading-7 text-ink/65 md:text-lg">A refined home for furniture that brings warmth, character and intention into everyday living.</p></Reveal><Reveal delay={260}><div className="mt-9 flex flex-wrap gap-3"><Link href="/shop" className="inline-flex items-center gap-3 bg-ink px-6 py-4 text-xs font-bold uppercase tracking-[.14em] text-paper hover:-translate-y-0.5">Explore the collection <ArrowUpRight size={16}/></Link><Link href="/about" className="inline-flex items-center gap-3 border border-ink/20 px-6 py-4 text-xs font-bold uppercase tracking-[.14em] hover:bg-sand">Our studio <ArrowDownRight size={16}/></Link></div></Reveal></div><Reveal className="relative" delay={180}><Parallax className="relative min-h-[520px] overflow-hidden md:min-h-[650px]"><div className="relative min-h-[560px] overflow-hidden md:min-h-[700px]"><ProductPlaceholder label="YOUR HERO PHOTOGRAPH"/><div className="absolute bottom-5 left-5 z-10 rounded-full border border-white/30 bg-black/15 px-4 py-2 text-[10px] font-bold uppercase tracking-[.18em] text-white backdrop-blur">Photography will be added</div></div></Parallax></Reveal></section><section className="border-y border-line bg-[#eee7de] py-24"><div className="container"><div className="flex flex-col justify-between gap-8 md:flex-row md:items-end"><div><Reveal><p className="eyebrow text-wood">The first look</p></Reveal><Reveal delay={80}><h2 className="display mt-3 max-w-2xl text-5xl md:text-6xl">A catalogue waiting for its pieces.</h2></Reveal></div><Reveal delay={160}><p className="max-w-sm text-sm leading-6 text-ink/60">The structure is ready. Once the real catalogue arrives, these placeholders become the actual HnH collection.</p></Reveal></div><Reveal delay={220}><div className="mt-12 grid gap-8 md:grid-cols-2">{products.slice(0,2).map(p=><ProductCard key={p.slug} product={p}/>)}</div></Reveal></div></section><section className="container py-24"><Reveal><p className="eyebrow text-wood">Shop by room</p></Reveal><Reveal delay={100}><div className="mt-7 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">{categories.map((c,i)=><Link key={c} href="/shop" className="group flex min-h-[140px] items-end justify-between border-b border-r border-line p-5 hover:bg-sand"><div><span className="text-xs text-ink/35">0{i+1}</span><h3 className="display mt-7 text-2xl">{c}</h3></div><ArrowUpRight size={18}/></Link>)}</div></Reveal></section><section className="bg-ink py-24 text-paper"><div className="container grid gap-12 md:grid-cols-[.8fr_1.2fr]"><div><Reveal><p className="eyebrow text-sand">Built for what comes next</p></Reveal><Reveal delay={80}><h2 className="display mt-4 text-5xl md:text-6xl">A furniture store ready for 3D.</h2></Reveal></div><Reveal delay={160}><div className="grid gap-8 sm:grid-cols-3"><div><Box size={24} strokeWidth={1.3}/><h3 className="mt-5 font-serif text-xl">3D-ready</h3><p className="mt-3 text-sm leading-6 text-paper/60">Products already have a place in the data model for future 3D assets.</p></div><div><Sparkles size={24} strokeWidth={1.3}/><h3 className="mt-5 font-serif text-xl">AR later</h3><p className="mt-3 text-sm leading-6 text-paper/60">Room visualization can be added without rebuilding the catalogue.</p></div><div><CreditCard size={24} strokeWidth={1.3}/><h3 className="mt-5 font-serif text-xl">UPI checkout</h3><p className="mt-3 text-sm leading-6 text-paper/60">Checkout is designed to connect to a legitimate payment gateway when the business account is ready.</p></div></div></Reveal></div></section><section className="container py-28 text-center"><Reveal><p className="eyebrow text-wood">HnH Wood Studio</p></Reveal><Reveal delay={100}><h2 className="display mx-auto mt-5 max-w-4xl text-5xl leading-tight md:text-7xl">The website is ready. Now let's fill it with the furniture.</h2></Reveal><Reveal delay={180}><Link href="/contact" className="mt-9 inline-flex items-center gap-3 border-b border-ink pb-2 text-xs font-bold uppercase tracking-[.16em]">Start the catalogue <ArrowUpRight size={16}/></Link></Reveal></section><footer className="border-t border-line py-10"><div className="container flex flex-col justify-between gap-5 text-xs text-ink/50 md:flex-row"><span>© {new Date().getFullYear()} HnH Wood Studio</span><span>Furniture · Objects · Living</span></div></footer></main>}
+
+export default function Home(){
+  return <main>
+    <section data-tone="#f6f2eb" className="container grid min-h-[calc(100vh-76px)] items-end gap-10 py-12 md:grid-cols-[1.05fr_.95fr] md:py-16">
+      <div className="pb-4 md:pb-14">
+        <Reveal><p className="eyebrow text-wood luxury-line">Furniture · Objects · Living</p></Reveal>
+        <MaskReveal><h1 className="display mt-5 max-w-3xl text-6xl leading-[.92] sm:text-7xl md:text-[92px]">Made to make a <em className="not-italic text-wood">space</em> feel like yours.</h1></MaskReveal>
+        <Reveal delay={180}><p className="mt-7 max-w-xl text-base leading-7 text-ink/65 md:text-lg">A refined home for furniture that brings warmth, character and intention into everyday living.</p></Reveal>
+        <Reveal delay={260}><div className="mt-9 flex flex-wrap gap-3">
+          <Link href="/shop" data-cursor="EXPLORE" className="luxury-button inline-flex items-center gap-3 bg-ink px-6 py-4 text-xs font-bold uppercase tracking-[.14em] text-paper">Explore the collection <ArrowUpRight size={16}/></Link>
+          <Link href="/about" data-cursor="STUDIO" className="luxury-button inline-flex items-center gap-3 border border-ink/20 px-6 py-4 text-xs font-bold uppercase tracking-[.14em] hover:bg-sand">Our studio <ArrowDownRight size={16}/></Link>
+        </div></Reveal>
+      </div>
+      <Reveal className="relative" delay={180}>
+        <Parallax cinematic className="relative min-h-[520px] overflow-hidden md:min-h-[650px]">
+          <ImageReveal className="h-full film-grain overflow-hidden">
+            <div className="relative min-h-[560px] overflow-hidden md:min-h-[700px]">
+              <ProductPlaceholder label="YOUR HERO PHOTOGRAPH"/>
+              <div className="absolute bottom-5 left-5 z-10 rounded-full border border-white/30 bg-black/15 px-4 py-2 text-[10px] font-bold uppercase tracking-[.18em] text-white backdrop-blur">Photography will be added</div>
+            </div>
+          </ImageReveal>
+        </Parallax>
+      </Reveal>
+    </section>
+
+    <section data-tone="#eee7de" className="border-y border-line bg-[#eee7de] py-24">
+      <div className="container">
+        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+          <div>
+            <Reveal><p className="eyebrow text-wood">The first look</p></Reveal>
+            <MaskReveal><h2 className="display mt-3 max-w-2xl text-5xl md:text-6xl">A catalogue waiting for its pieces.</h2></MaskReveal>
+          </div>
+          <Reveal delay={160}><p className="max-w-sm text-sm leading-6 text-ink/60">The structure is ready. Once the real catalogue arrives, these placeholders become the actual HnH collection.</p></Reveal>
+        </div>
+        <Reveal delay={220}><div className="mt-12 grid gap-8 md:grid-cols-2">{products.slice(0,2).map(p=><ProductCard key={p.slug} product={p}/>)}</div></Reveal>
+      </div>
+    </section>
+
+    <section data-tone="#f6f2eb" className="container py-24">
+      <Reveal><p className="eyebrow text-wood">Shop by room</p></Reveal>
+      <Reveal delay={100}><div className="mt-7 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">{categories.map((c,i)=><Link key={c} href="/shop" data-cursor="VIEW" className="group flex min-h-[140px] items-end justify-between border-b border-r border-line p-5 transition duration-700 hover:bg-sand">
+        <div><span className="text-xs text-ink/35">0{i+1}</span><h3 className="display mt-7 text-2xl transition-transform duration-700 group-hover:translate-x-1">{c}</h3></div>
+        <ArrowUpRight size={18} className="transition duration-500 group-hover:-translate-y-1 group-hover:translate-x-1"/>
+      </Link>)}</div></Reveal>
+    </section>
+
+    <HorizontalGallery/>
+
+    <section data-tone="#211c17" className="bg-ink py-24 text-paper">
+      <div className="container grid gap-12 md:grid-cols-[.8fr_1.2fr]">
+        <div>
+          <Reveal><p className="eyebrow text-sand">Built for what comes next</p></Reveal>
+          <MaskReveal><h2 className="display mt-4 text-5xl md:text-6xl">A furniture store ready for 3D.</h2></MaskReveal>
+        </div>
+        <Reveal delay={160}><div className="grid gap-8 sm:grid-cols-3">
+          <div><Box size={24} strokeWidth={1.3}/><h3 className="mt-5 font-serif text-xl">3D-ready</h3><p className="mt-3 text-sm leading-6 text-paper/60">Products already have a place in the data model for future 3D assets.</p></div>
+          <div><Sparkles size={24} strokeWidth={1.3}/><h3 className="mt-5 font-serif text-xl">AR later</h3><p className="mt-3 text-sm leading-6 text-paper/60">Room visualization can be added without rebuilding the catalogue.</p></div>
+          <div><CreditCard size={24} strokeWidth={1.3}/><h3 className="mt-5 font-serif text-xl">UPI checkout</h3><p className="mt-3 text-sm leading-6 text-paper/60">Checkout is designed to connect to a legitimate payment gateway when the business account is ready.</p></div>
+        </div></Reveal>
+      </div>
+    </section>
+
+    <section data-tone="#f6f2eb" className="container py-28 text-center">
+      <Reveal><p className="eyebrow text-wood">HnH Wood Studio</p></Reveal>
+      <MaskReveal><h2 className="display mx-auto mt-5 max-w-4xl text-5xl leading-tight md:text-7xl">The website is ready. Now let's fill it with the furniture.</h2></MaskReveal>
+      <Reveal delay={180}><Link href="/contact" data-cursor="ENQUIRE" className="luxury-button mt-9 inline-flex items-center gap-3 border-b border-ink pb-2 text-xs font-bold uppercase tracking-[.16em]">Start the catalogue <ArrowUpRight size={16}/></Link></Reveal>
+    </section>
+
+    <footer data-tone="#f6f2eb" className="border-t border-line py-10">
+      <div className="container flex flex-col justify-between gap-5 text-xs text-ink/50 md:flex-row"><span>© {new Date().getFullYear()} HnH Wood Studio</span><span>Furniture · Objects · Living</span></div>
+    </footer>
+  </main>;
+}
