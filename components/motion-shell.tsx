@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect,useRef,useState,type ReactNode} from "react";
+import {useEffect,useRef,useState,type CSSProperties, type ReactNode} from "react";
 import {usePathname,useRouter} from "next/navigation";
 
 export function MotionShell({children}:{children:ReactNode}){
@@ -63,18 +63,17 @@ export function MotionShell({children}:{children:ReactNode}){
       setCursorLabel(interactive?.getAttribute("data-cursor")||"");
     };
     const leave=()=>setCursorVisible(false);
+    const out=(event:PointerEvent)=>{ if(!(event.relatedTarget as Node|null)) leave(); };
 
     window.addEventListener("pointermove",move,{passive:true});
     document.addEventListener("pointerover",over);
-    document.addEventListener("pointerout",(event)=>{
-      if((event.relatedTarget as Node|null)) return;
-      leave();
-    });
+    document.addEventListener("pointerout",out);
 
     return ()=>{
       document.body.classList.remove("luxury-cursor-enabled");
       window.removeEventListener("pointermove",move);
       document.removeEventListener("pointerover",over);
+      document.removeEventListener("pointerout",out);
     };
   },[]);
 
@@ -118,7 +117,7 @@ export function MotionShell({children}:{children:ReactNode}){
 
   return <div className="motion-shell">
     <div className="ambient-wash" aria-hidden="true"/>
-    <div className="scroll-progress" style={{"--progress":`${progress}%`} as React.CSSProperties} aria-hidden="true"/>
+    <div className="scroll-progress" style={{"--progress":`${progress}%`} as CSSProperties} aria-hidden="true"/>
     <div ref={cursorRef} className={`luxury-cursor ${cursorVisible?"is-visible":""}`} aria-hidden="true">
       <span>{cursorLabel}</span>
     </div>
