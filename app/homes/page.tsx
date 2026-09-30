@@ -1,0 +1,7 @@
+import {Reveal} from "@/components/reveal";
+import {MaskReveal} from "@/components/mask-reveal";
+import {StudioImage} from "@/components/studio-image";
+
+const homes=[["A quieter living room","Living","A room built around conversation, light and one strong anchor piece.","/images/gallery/living.jpg"],["A table for everyday life","Dining","A dining setting designed to work on an ordinary Tuesday as well as a long Sunday lunch.","/images/gallery/dining.jpg"],["A softer rhythm","Bedroom","Materials and proportions chosen to make the room feel calm and useful.","/images/gallery/bedroom.jpg"]];
+
+export default function HomesPage(){return <main><section className="container py-20 md:py-28"><Reveal><p className="eyebrow text-wood">Customer homes</p></Reveal><MaskReveal><h1 className="display mt-4 max-w-5xl text-6xl md:text-8xl">Furniture becomes different once it belongs to a home.</h1></MaskReveal><Reveal delay={140}><p className="mt-8 max-w-2xl text-lg leading-8 text-ink/65">A future gallery for real HnH pieces in real homes — useful for inspiration, context and seeing how materials live outside the showroom.</p></Reveal></section><section className="container grid gap-8 pb-24 md:grid-cols-3">{homes.map(([title,tag,copy,img])=><article key={title}><div className="aspect-[4/5] overflow-hidden"><StudioImage src={img} alt={title}/></div><p className="eyebrow mt-6 text-wood">{tag}</p><h2 className="display mt-3 text-3xl">{title}</h2><p className="mt-3 text-sm leading-7 text-ink/60">{copy}</p></article>)}</section></main>;}
