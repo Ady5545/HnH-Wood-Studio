@@ -1,45 +1,258 @@
 import Link from "next/link";
-import {ArrowDownRight,ArrowUpRight,ArrowRight} from "lucide-react";
-import {ProductCard} from "@/components/product-card";
-import {Reveal} from "@/components/reveal";
-import {Parallax} from "@/components/motion";
-import {ImageReveal} from "@/components/image-reveal";
-import {MaskReveal} from "@/components/mask-reveal";
-import {HorizontalGallery} from "@/components/horizontal-gallery";
-import {HomeFinder} from "@/components/home-finder";
-import {StudioImage} from "@/components/studio-image";
-import {MaterialStories} from "@/components/material-stories";
-import {RoomVisualizer} from "@/components/room-visualizer";
-import {CraftSection} from "@/components/craft-section";
-import {EditorialStrip} from "@/components/editorial-strip";
-import {products} from "@/lib/products";
+import { ArrowDownRight, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ProductCard } from "@/components/product-card";
+import { Reveal } from "@/components/reveal";
+import { Parallax } from "@/components/motion";
+import { ImageReveal } from "@/components/image-reveal";
+import { MaskReveal } from "@/components/mask-reveal";
+import { HorizontalGallery } from "@/components/horizontal-gallery";
+import { HomeFinder } from "@/components/home-finder";
+import { StudioImage } from "@/components/studio-image";
+import { MaterialStories } from "@/components/material-stories";
+import { RoomVisualizer } from "@/components/room-visualizer";
+import { CraftSection } from "@/components/craft-section";
+import { EditorialStrip } from "@/components/editorial-strip";
+import { products } from "@/lib/products";
 
-const categories=["Living Room","Bedroom","Dining","Seating","Tables","Storage","Custom Furniture"];
+const categories = ["Living Room", "Bedroom", "Dining", "Seating", "Tables", "Storage", "Custom Furniture"];
+const homeTypes = [
+  ["01", "Living", "Anchor the room."],
+  ["02", "Dining", "Make space to gather."],
+  ["03", "Bedroom", "Create a quieter rhythm."],
+  ["04", "Custom", "Build around the details."],
+];
 
-export default function Home(){return <main>
-<section data-tone="#f6f2eb" className="container grid min-h-[calc(100vh-76px)] items-end gap-10 py-12 md:grid-cols-[1.05fr_.95fr] md:py-16"><div className="pb-4 md:pb-14"><Reveal><p className="eyebrow text-wood luxury-line">Furniture · Objects · Living</p></Reveal><MaskReveal><h1 className="display mt-5 max-w-3xl text-6xl leading-[.92] sm:text-7xl md:text-[92px]">Made to make a <em className="not-italic text-wood">space</em> feel like yours.</h1></MaskReveal><Reveal delay={180}><p className="mt-7 max-w-xl text-base leading-7 text-ink/65 md:text-lg">A refined home for furniture that brings warmth, character and intention into everyday living.</p></Reveal><Reveal delay={260}><div className="mt-9 flex flex-wrap gap-3"><Link href="/shop" data-cursor="EXPLORE" className="luxury-button inline-flex items-center gap-3 bg-ink px-6 py-4 text-xs font-bold uppercase tracking-[.14em] text-paper">Explore the collection <ArrowUpRight size={16}/></Link><Link href="/about" data-cursor="STUDIO" className="luxury-button inline-flex items-center gap-3 border border-ink/20 px-6 py-4 text-xs font-bold uppercase tracking-[.14em] hover:bg-sand">Our studio <ArrowDownRight size={16}/></Link></div></Reveal></div><Reveal className="relative" delay={180}><Parallax cinematic className="relative min-h-[520px] overflow-hidden md:min-h-[650px]"><ImageReveal className="h-full film-grain overflow-hidden"><div className="relative min-h-[560px] overflow-hidden md:min-h-[700px]"><StudioImage src="/images/hero.jpg" alt="HnH Wood Studio furniture"/></div></ImageReveal></Parallax></Reveal></section>
+export default function Home() {
+  return (
+    <main>
+      <section data-tone="#f6f2eb" className="container grid min-h-[calc(100vh-76px)] items-end gap-10 py-12 md:grid-cols-[1.05fr_.95fr] md:py-16">
+        <div className="pb-4 md:pb-14">
+          <Reveal>
+            <p className="eyebrow text-wood luxury-line">Furniture · Objects · Living</p>
+          </Reveal>
+          <MaskReveal>
+            <h1 className="display mt-5 max-w-3xl text-6xl leading-[.92] sm:text-7xl md:text-[92px]">
+              Made to make a <em className="not-italic text-wood">space</em> feel like yours.
+            </h1>
+          </MaskReveal>
+          <Reveal delay={180}>
+            <p className="mt-7 max-w-xl text-base leading-7 text-ink/65 md:text-lg">
+              A refined home for furniture that brings warmth, character and intention into everyday living.
+            </p>
+          </Reveal>
+          <Reveal delay={260}>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link href="/shop" data-cursor="EXPLORE" className="luxury-button inline-flex items-center gap-3 bg-ink px-6 py-4 text-xs font-bold uppercase tracking-[.14em] text-paper">
+                Explore the collection <ArrowUpRight size={16} />
+              </Link>
+              <Link href="/about" data-cursor="STUDIO" className="luxury-button inline-flex items-center gap-3 border border-ink/20 px-6 py-4 text-xs font-bold uppercase tracking-[.14em] hover:bg-sand">
+                Our studio <ArrowDownRight size={16} />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+        <Reveal className="relative" delay={180}>
+          <Parallax cinematic className="relative min-h-[520px] overflow-hidden md:min-h-[650px]">
+            <ImageReveal className="h-full overflow-hidden film-grain">
+              <div className="relative min-h-[560px] overflow-hidden md:min-h-[700px]">
+                <StudioImage src="/images/hero.jpg" alt="HnH Wood Studio furniture" />
+              </div>
+            </ImageReveal>
+          </Parallax>
+        </Reveal>
+      </section>
 
-<section data-tone="#eee7de" className="border-y border-line bg-[#eee7de] py-24 md:py-28"><div className="container"><div className="flex flex-col justify-between gap-8 md:flex-row md:items-end"><div><Reveal><p className="eyebrow text-wood">Featured pieces</p></Reveal><MaskReveal><h2 className="display mt-3 max-w-2xl text-5xl md:text-6xl">The pieces that set the tone.</h2></MaskReveal></div><Reveal delay={160}><Link href="/shop" className="luxury-button inline-flex items-center gap-3 border-b border-ink pb-2 text-xs font-bold uppercase tracking-[.16em]">View the collection <ArrowUpRight size={15}/></Link></Reveal></div><Reveal delay={220}><div className="mt-12 grid gap-8 lg:grid-cols-[1.22fr_.78fr]"><ProductCard product={products[0]}/><div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">{products.slice(1,3).map(p=><ProductCard key={p.slug} product={p}/>)}</div></div></Reveal></div></section>
+      <section data-tone="#eee7de" className="border-y border-line bg-[#eee7de] py-24 md:py-28">
+        <div className="container">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <div>
+              <Reveal><p className="eyebrow text-wood">Featured pieces</p></Reveal>
+              <MaskReveal>
+                <h2 className="display mt-3 max-w-2xl text-5xl md:text-6xl">The pieces that set the tone.</h2>
+              </MaskReveal>
+            </div>
+            <Reveal delay={160}>
+              <Link href="/shop" className="luxury-button inline-flex items-center gap-3 border-b border-ink pb-2 text-xs font-bold uppercase tracking-[.16em]">
+                View the collection <ArrowUpRight size={15} />
+              </Link>
+            </Reveal>
+          </div>
+          <Reveal delay={220}>
+            <div className="mt-12 grid gap-8 lg:grid-cols-[1.22fr_.78fr]">
+              <ProductCard product={products[0]} />
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
+                {products.slice(1, 3).map((product) => (
+                  <ProductCard key={product.slug} product={product} />
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-<section data-tone="#f6f2eb" className="container py-24"><Reveal><p className="eyebrow text-wood">Shop by room</p></Reveal><Reveal delay={100}><div className="mt-7 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">{categories.map((c,i)=><Link key={c} href="/shop" data-cursor="VIEW" className="group flex min-h-[140px] items-end justify-between border-b border-r border-line p-5 transition duration-700 hover:bg-sand"><div><span className="text-xs text-ink/35">0{i+1}</span><h3 className="display mt-7 text-2xl transition-transform duration-700 group-hover:translate-x-1">{c}</h3></div><ArrowUpRight size={18} className="transition duration-500 group-hover:-translate-y-1 group-hover:translate-x-1"/></Link>)}</div></Reveal></section>
+      <section data-tone="#f6f2eb" className="container py-24">
+        <Reveal><p className="eyebrow text-wood">Shop by room</p></Reveal>
+        <Reveal delay={100}>
+          <div className="mt-7 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
+            {categories.map((category, index) => (
+              <Link key={category} href="/shop" data-cursor="VIEW" className="group flex min-h-[140px] items-end justify-between border-b border-r border-line p-5 transition duration-700 hover:bg-sand">
+                <div>
+                  <span className="text-xs text-ink/35">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="display mt-7 text-2xl transition-transform duration-700 group-hover:translate-x-1">{category}</h3>
+                </div>
+                <ArrowUpRight size={18} className="transition duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
+              </Link>
+            ))}
+          </div>
+        </Reveal>
+      </section>
 
-<RoomVisualizer/>
-<HorizontalGallery/>
-<MaterialStories/>
-<CraftSection/>
+      <RoomVisualizer />
+      <HorizontalGallery />
+      <MaterialStories />
+      <CraftSection />
 
-<section data-tone="#eee7de" className="border-y border-line bg-[#eee7de] py-24 md:py-32"><div className="container grid gap-12 md:grid-cols-[.8fr_1.2fr] md:items-center"><div><Reveal><p className="eyebrow text-wood">A room, made personal</p></Reveal><MaskReveal><h2 className="display mt-4 text-5xl md:text-6xl">Furniture should feel discovered, not selected.</h2></MaskReveal><Reveal delay={130}><p className="mt-6 max-w-md text-sm leading-7 text-ink/60">Build a room around the way you live, then let the pieces become part of the story.</p></Reveal></div><Reveal delay={160}><div className="grid gap-4 sm:grid-cols-2"><div className="film-grain overflow-hidden"><div className="aspect-[4/5]"><StudioImage src="/images/editorial/living-detail.jpg" alt="Furniture in a living space"/></div></div><div className="mt-12 film-grain overflow-hidden sm:mt-24"><div className="aspect-[4/5]"><StudioImage src="/images/editorial/dining-detail.jpg" alt="Furniture in a dining space"/></div></div></div></Reveal></div></section>
+      <section data-tone="#eee7de" className="border-y border-line bg-[#eee7de] py-24 md:py-32">
+        <div className="container grid gap-12 md:grid-cols-[.8fr_1.2fr] md:items-center">
+          <div>
+            <Reveal><p className="eyebrow text-wood">A room, made personal</p></Reveal>
+            <MaskReveal>
+              <h2 className="display mt-4 text-5xl md:text-6xl">Furniture should feel discovered, not selected.</h2>
+            </MaskReveal>
+            <Reveal delay={130}>
+              <p className="mt-6 max-w-md text-sm leading-7 text-ink/60">
+                Build a room around the way you live, then let the pieces become part of the story.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal delay={160}>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="overflow-hidden film-grain">
+                <div className="aspect-[4/5]">
+                  <StudioImage src="/images/editorial/living-detail.jpg" alt="Furniture in a living space" />
+                </div>
+              </div>
+              <div className="mt-12 overflow-hidden film-grain sm:mt-24">
+                <div className="aspect-[4/5]">
+                  <StudioImage src="/images/editorial/dining-detail.jpg" alt="Furniture in a dining space" />
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-<HomeFinder/>
-<EditorialStrip/>
+      <HomeFinder />
+      <EditorialStrip />
 
-<section data-tone="#f6f2eb" className="container py-24 md:py-32"><div className="grid gap-10 md:grid-cols-2 md:items-center"><Reveal><ImageReveal className="film-grain overflow-hidden"><div className="relative aspect-[4/5]"><StudioImage src="/images/studio-detail.jpg" alt="HnH Wood Studio detail"/></div></ImageReveal></Reveal><div className="md:pl-12"><Reveal><p className="eyebrow text-wood">Made personal</p></Reveal><MaskReveal><h2 className="display mt-4 text-5xl md:text-6xl">A piece should work with the room — not against it.</h2></MaskReveal><Reveal delay={130}><p className="mt-7 max-w-lg text-base leading-7 text-ink/60">Materials, workmanship, custom requirements and the details that make each piece worth choosing.</p></Reveal><Reveal delay={200}><Link href="/about" data-cursor="DISCOVER" className="luxury-button mt-8 inline-flex items-center gap-3 border-b border-ink pb-2 text-xs font-bold uppercase tracking-[.16em]">Discover the studio <ArrowRight size={16}/></Link></Reveal></div></div></section>
+      <section data-tone="#f6f2eb" className="container py-24 md:py-32">
+        <div className="grid gap-10 md:grid-cols-2 md:items-center">
+          <Reveal>
+            <ImageReveal className="overflow-hidden film-grain">
+              <div className="relative aspect-[4/5]">
+                <StudioImage src="/images/studio-detail.jpg" alt="HnH Wood Studio detail" />
+              </div>
+            </ImageReveal>
+          </Reveal>
+          <div className="md:pl-12">
+            <Reveal><p className="eyebrow text-wood">Made personal</p></Reveal>
+            <MaskReveal>
+              <h2 className="display mt-4 text-5xl md:text-6xl">A piece should work with the room — not against it.</h2>
+            </MaskReveal>
+            <Reveal delay={130}>
+              <p className="mt-7 max-w-lg text-base leading-7 text-ink/60">
+                Materials, workmanship, custom requirements and the details that make each piece worth choosing.
+              </p>
+            </Reveal>
+            <Reveal delay={200}>
+              <Link href="/about" data-cursor="DISCOVER" className="luxury-button mt-8 inline-flex items-center gap-3 border-b border-ink pb-2 text-xs font-bold uppercase tracking-[.16em]">
+                Discover the studio <ArrowRight size={16} />
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
-<section data-tone="#f6f2eb" className="container py-20 md:py-28"><div className="flex flex-col justify-between gap-8 border-y border-line py-8 md:flex-row md:items-end"><div><Reveal><p className="eyebrow text-wood">The collection, beyond one room</p></Reveal><MaskReveal><h2 className="display mt-3 max-w-3xl text-5xl md:text-6xl">From a single piece to a whole home.</h2></MaskReveal></div><Reveal delay={120}><p className="max-w-sm text-sm leading-7 text-ink/60">Browse individual pieces, discover a room, or start a conversation about something made around your space.</p></Reveal></div><Reveal delay={180}><div className="mt-10 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">{[["01","Living","Anchor the room."],["02","Dining","Make space to gather."],["03","Bedroom","Create a quieter rhythm."],["04","Custom","Build around the details."]].map(([n,t,c])=><Link href="/shop" key={n} className="group bg-paper p-7 transition duration-700 hover:bg-sand"><span className="eyebrow text-wood">{n}</span><h3 className="display mt-12 text-3xl">{t}</h3><p className="mt-3 text-sm text-ink/55">{c}</p><ArrowUpRight size={17} className="mt-8 transition duration-500 group-hover:-translate-y-1 group-hover:translate-x-1"/></Link>)}</div></Reveal></div></section>
+      <section data-tone="#f6f2eb" className="container py-20 md:py-28">
+        <div className="flex flex-col justify-between gap-8 border-y border-line py-8 md:flex-row md:items-end">
+          <div>
+            <Reveal><p className="eyebrow text-wood">The collection, beyond one room</p></Reveal>
+            <MaskReveal>
+              <h2 className="display mt-3 max-w-3xl text-5xl md:text-6xl">From a single piece to a whole home.</h2>
+            </MaskReveal>
+          </div>
+          <Reveal delay={120}>
+            <p className="max-w-sm text-sm leading-7 text-ink/60">
+              Browse individual pieces, discover a room, or start a conversation about something made around your space.
+            </p>
+          </Reveal>
+        </div>
+        <Reveal delay={180}>
+          <div className="mt-10 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+            {homeTypes.map(([number, title, copy]) => (
+              <Link href="/shop" key={number} className="group bg-paper p-7 transition duration-700 hover:bg-sand">
+                <span className="eyebrow text-wood">{number}</span>
+                <h3 className="display mt-12 text-3xl">{title}</h3>
+                <p className="mt-3 text-sm text-ink/55">{copy}</p>
+                <ArrowUpRight size={17} className="mt-8 transition duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
+              </Link>
+            ))}
+          </div>
+        </Reveal>
+      </section>
 
-<section data-tone="#f6f2eb" className="container py-20 md:py-28"><div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between"><div><Reveal><p className="eyebrow text-wood">Have something in mind?</p></Reveal><MaskReveal><h2 className="display mt-3 max-w-3xl text-5xl md:text-6xl">Let's create the right piece for the space.</h2></MaskReveal></div><Reveal delay={140}><Link href="/contact" data-cursor="ENQUIRE" className="luxury-button inline-flex shrink-0 items-center gap-3 bg-ink px-6 py-4 text-xs font-bold uppercase tracking-[.14em] text-paper">Make an enquiry <ArrowUpRight size={16}/></Link></Reveal></div></section>
+      <section data-tone="#f6f2eb" className="container py-20 md:py-28">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div>
+            <Reveal><p className="eyebrow text-wood">Have something in mind?</p></Reveal>
+            <MaskReveal>
+              <h2 className="display mt-3 max-w-3xl text-5xl md:text-6xl">Let's create the right piece for the space.</h2>
+            </MaskReveal>
+          </div>
+          <Reveal delay={140}>
+            <Link href="/contact" data-cursor="ENQUIRE" className="luxury-button inline-flex shrink-0 items-center gap-3 bg-ink px-6 py-4 text-xs font-bold uppercase tracking-[.14em] text-paper">
+              Make an enquiry <ArrowUpRight size={16} />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
 
-<section data-tone="#211c17" className="bg-ink py-24 text-paper md:py-32"><div className="container grid gap-10 md:grid-cols-[1fr_.8fr] md:items-end"><div><Reveal><p className="eyebrow text-sand">HnH Wood Studio</p></Reveal><MaskReveal><h2 className="display mt-4 text-5xl md:text-7xl">Good furniture deserves to be seen slowly.</h2></MaskReveal></div><Reveal delay={150}><p className="max-w-md text-sm leading-7 text-paper/60">Thoughtful forms, tactile materials and furniture made to live beautifully.</p></Reveal></div></section>
-<section data-tone="#f6f2eb" className="container py-28 text-center"><Reveal><p className="eyebrow text-wood">HnH Wood Studio</p></Reveal><MaskReveal><h2 className="display mx-auto mt-5 max-w-4xl text-5xl leading-tight md:text-7xl">Furniture for spaces that feel like yours.</h2></MaskReveal><Reveal delay={180}><Link href="/shop" data-cursor="EXPLORE" className="luxury-button mt-9 inline-flex items-center gap-3 border-b border-ink pb-2 text-xs font-bold uppercase tracking-[.16em]">Explore the collection <ArrowUpRight size={16}/></Link></Reveal></section>
-<footer data-tone="#f6f2eb" className="border-t border-line py-10"><div className="container flex flex-col justify-between gap-5 text-xs text-ink/50 md:flex-row"><span>© {new Date().getFullYear()} HnH Wood Studio</span><span>Furniture · Objects · Living</span></div></footer>
-</main>}
+      <section data-tone="#211c17" className="bg-ink py-24 text-paper md:py-32">
+        <div className="container grid gap-10 md:grid-cols-[1fr_.8fr] md:items-end">
+          <div>
+            <Reveal><p className="eyebrow text-sand">HnH Wood Studio</p></Reveal>
+            <MaskReveal>
+              <h2 className="display mt-4 text-5xl md:text-7xl">Good furniture deserves to be seen slowly.</h2>
+            </MaskReveal>
+          </div>
+          <Reveal delay={150}>
+            <p className="max-w-md text-sm leading-7 text-paper/60">
+              Thoughtful forms, tactile materials and furniture made to live beautifully.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section data-tone="#f6f2eb" className="container py-28 text-center">
+        <Reveal><p className="eyebrow text-wood">HnH Wood Studio</p></Reveal>
+        <MaskReveal>
+          <h2 className="display mx-auto mt-5 max-w-4xl text-5xl leading-tight md:text-7xl">
+            Furniture for spaces that feel like yours.
+          </h2>
+        </MaskReveal>
+        <Reveal delay={180}>
+          <Link href="/shop" data-cursor="EXPLORE" className="luxury-button mt-9 inline-flex items-center gap-3 border-b border-ink pb-2 text-xs font-bold uppercase tracking-[.16em]">
+            Explore the collection <ArrowUpRight size={16} />
+          </Link>
+        </Reveal>
+      </section>
+
+      <footer data-tone="#f6f2eb" className="border-t border-line py-10">
+        <div className="container flex flex-col justify-between gap-5 text-xs text-ink/50 md:flex-row">
+          <span>© {new Date().getFullYear()} HnH Wood Studio</span>
+          <span>Furniture · Objects · Living</span>
+        </div>
+      </footer>
+    </main>
+  );
+}
