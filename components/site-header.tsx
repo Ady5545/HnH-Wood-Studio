@@ -4,7 +4,7 @@ import Link from "next/link";
 import {Menu,ShoppingBag,X} from "lucide-react";
 import {useState} from "react";
 
-const links=[["Shop","/shop"],["Collections","/collections"],["About","/about"],["Contact","/contact"]];
+const links=[["Shop","/shop"],["Collections","/collections"],["Rooms","/room-planner"],["Studio","/workshop"],["Journal","/journal"]];
 
 export function SiteHeader(){
   const[open,setOpen]=useState(false);
