@@ -125,7 +125,7 @@ export function MotionShell({children}:{children:ReactNode}){
       <div className="page-transition-mark">HnH</div>
       <div className="page-transition-line"/>
     </div>
-    <div className={`page-loader ${booting ? "is-active" : ""}`} aria-hidden="true"}>
+    <div className={`page-loader ${booting ? "is-active" : ""}`} aria-hidden="true">
       <div className="page-loader-mark">HnH</div>
       <div className="page-loader-sub">Wood Studio</div>
       <div className="page-loader-line"><span/></div>
