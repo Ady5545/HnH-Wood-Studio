@@ -42,7 +42,7 @@ export function MotionShell({children}:{children:ReactNode}){
   useEffect(()=>{
     setTransitioning(false);
     pendingHrefRef.current=null;
-    window.scrollTo({top:0,behavior:"instant"});
+    window.scrollTo(0,0);
   },[pathname]);
 
   useEffect(()=>{
