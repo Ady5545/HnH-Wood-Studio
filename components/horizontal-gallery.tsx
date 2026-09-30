@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect,useRef,useState} from "react";
+import {useEffect,useRef} from "react";
 import {ArrowUpRight} from "lucide-react";
 import {StudioImage} from "@/components/studio-image";
 
@@ -14,26 +14,30 @@ const cards=[
 export function HorizontalGallery(){
   const sectionRef=useRef<HTMLElement>(null);
   const trackRef=useRef<HTMLDivElement>(null);
-  const [x,setX]=useState(0);
+  const rafRef=useRef<number|undefined>(undefined);
   useEffect(()=>{
     const update=()=>{
-      const section=sectionRef.current;
-      const track=trackRef.current;
-      if(!section||!track) return;
-      const max=Math.max(0,track.scrollWidth-window.innerWidth+48);
-      const travel=Math.max(1,section.offsetHeight-window.innerHeight);
-      const raw=-section.getBoundingClientRect().top/travel;
-      const progress=Math.min(1,Math.max(0,raw));
-      setX(-max*progress);
+      if(rafRef.current) return;
+      rafRef.current=requestAnimationFrame(()=>{
+        rafRef.current=undefined;
+        const section=sectionRef.current;
+        const track=trackRef.current;
+        if(!section||!track) return;
+        const max=Math.max(0,track.scrollWidth-window.innerWidth+48);
+        const travel=Math.max(1,section.offsetHeight-window.innerHeight);
+        const raw=-section.getBoundingClientRect().top/travel;
+        const progress=Math.min(1,Math.max(0,raw));
+        track.style.transform=`translate3d(${-max*progress}px,0,0)`;
+      });
     };
     update();
     window.addEventListener("scroll",update,{passive:true});
     window.addEventListener("resize",update);
-    return ()=>{window.removeEventListener("scroll",update);window.removeEventListener("resize",update)};
+    return ()=>{if(rafRef.current)cancelAnimationFrame(rafRef.current);window.removeEventListener("scroll",update);window.removeEventListener("resize",update)};
   },[]);
   return <section ref={sectionRef} data-tone="#eee7de" className="horizontal-gallery-section border-y border-line bg-[#eee7de]">
     <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-      <div ref={trackRef} className="flex gap-6 px-[max(20px,calc((100vw-1180px)/2))]" style={{transform:`translate3d(${x}px,0,0)`}}>
+      <div ref={trackRef} className="flex gap-6 px-[max(20px,calc((100vw-1180px)/2))]">
         <div className="w-[min(360px,74vw)] shrink-0 self-center pr-6">
           <p className="eyebrow text-wood">The studio edit</p>
           <h2 className="display mt-4 text-5xl leading-[.95] sm:text-6xl">Spaces, composed slowly.</h2>
