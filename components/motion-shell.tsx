@@ -12,6 +12,7 @@ export function MotionShell({children}:{children:ReactNode}){
   const [cursorLabel,setCursorLabel]=useState("");
   const cursorRef=useRef<HTMLDivElement>(null);
   const progressRef=useRef<HTMLDivElement>(null);
+  const scrollRef=useRef<HTMLSpanElement>(null);
   const rafRef=useRef<number|undefined>(undefined);
   const pendingHrefRef=useRef<string|null>(null);
 
@@ -29,6 +30,7 @@ export function MotionShell({children}:{children:ReactNode}){
         const max=doc.scrollHeight-window.innerHeight;
         const progress=max>0?Math.min(100,Math.max(0,(window.scrollY/max)*100)):0;
         progressRef.current?.style.setProperty("--progress",`${progress}%`);
+        scrollRef.current?.style.setProperty("--scroll-progress",`${progress}%`);
       });
     };
     update();
@@ -48,6 +50,8 @@ export function MotionShell({children}:{children:ReactNode}){
     if(!fine) return;
     document.body.classList.add("luxury-cursor-enabled");
     const move=(event:PointerEvent)=>{
+      document.documentElement.style.setProperty("--light-x",`${Math.round((event.clientX/window.innerWidth)*100)}%`);
+      document.documentElement.style.setProperty("--light-y",`${Math.round((event.clientY/window.innerHeight)*100)}%`);
       const node=cursorRef.current;
       if(!node) return;
       node.style.setProperty("--cursor-x",`${event.clientX}px`);
@@ -117,8 +121,8 @@ export function MotionShell({children}:{children:ReactNode}){
   },[router,transitioning]);
 
   return <div className="motion-shell">
-    <div className="ambient-wash" aria-hidden="true"/>
-    <div ref={progressRef} className="scroll-progress" style={{"--progress":"0%"} as CSSProperties} aria-hidden="true"/>
+    <div className="cinematic-light" aria-hidden="true"/><div className="cinematic-vignette" aria-hidden="true"/><div className="ambient-wash" aria-hidden="true"/>
+    <div ref={progressRef} className="scroll-progress" style={{"--progress":"0%"} as CSSProperties} aria-hidden="true"/><div className="luxury-scrollbar" aria-hidden="true"><span ref={scrollRef}/></div>
     <div ref={cursorRef} className="luxury-cursor" aria-hidden="true"><span/></div>
     <div className={`page-transition ${transitioning?"is-active":""}`} aria-hidden="true"><div className="page-transition-mark">HnH</div><div className="page-transition-line"/></div>
     <div className={`page-loader ${booting?"is-active":""}`} aria-hidden="true"><div className="page-loader-mark">HnH</div><div className="page-loader-sub">Wood Studio</div><div className="page-loader-line"><span/></div></div>
