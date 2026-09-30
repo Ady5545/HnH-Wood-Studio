@@ -16,3 +16,15 @@ body{overflow-x:hidden}.parallax-inner{transform:translate3d(0,var(--parallax-y,
 /* Homepage interaction polish */
 button{font:inherit;color:inherit}
 button:focus-visible,a:focus-visible{outline:2px solid var(--wood);outline-offset:4px}
+
+/* Cinematic lighting + luxury scroll */
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+.luxury-scrollbar{position:fixed;right:18px;top:50%;z-index:90;width:1px;height:112px;transform:translateY(-50%);background:rgba(33,28,23,.12);pointer-events:none}
+.luxury-scrollbar span{display:block;width:3px;margin-left:-1px;height:var(--scroll-progress,0%);max-height:100%;background:var(--wood);transform-origin:top;box-shadow:0 0 12px rgba(128,96,71,.32);transition:height .16s linear}
+.cinematic-light{position:fixed;inset:-20%;z-index:0;pointer-events:none;background:radial-gradient(circle at var(--light-x,50%) var(--light-y,18%),rgba(255,248,235,.42),transparent 30%),radial-gradient(circle at 78% 70%,rgba(128,96,71,.08),transparent 28%);mix-blend-mode:soft-light;opacity:.9;transition:opacity 1.2s ease}
+.cinematic-vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at center,transparent 48%,rgba(33,28,23,.10) 100%);mix-blend-mode:multiply;opacity:.42}
+.cinematic-sheen{position:relative;overflow:hidden}
+.cinematic-sheen:after{content:"";position:absolute;inset:-30% -70%;pointer-events:none;background:linear-gradient(110deg,transparent 38%,rgba(255,250,240,.10) 49%,transparent 60%);transform:translateX(-55%);animation:cinematicSheen 11s ease-in-out infinite}
+@keyframes cinematicSheen{0%,58%{transform:translateX(-55%)}76%,100%{transform:translateX(55%)}}
+@media(max-width:767px){.luxury-scrollbar{right:8px;height:82px}.cinematic-light{opacity:.7}}
+@media(prefers-reduced-motion:reduce){.cinematic-sheen:after{animation:none}.luxury-scrollbar span{transition:none}}
