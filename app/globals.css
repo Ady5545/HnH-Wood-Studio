@@ -84,3 +84,4 @@ body{overflow-x:hidden}
   .image-reveal-inner,.mask-reveal-inner,.parallax-cinematic .parallax-inner{transform:none}
   .page-loader{display:none}
 }
+\n\n/* Homepage interaction polish */\nbutton{font:inherit;color:inherit}\nbutton:focus-visible,a:focus-visible{outline:2px solid var(--wood);outline-offset:4px}\n
